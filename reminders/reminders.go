@@ -1,4 +1,4 @@
-package reminders //github.com/mig2/icloud/reminders
+package reminders //github.com/tgreiser/icloud/reminders
 
 import (
 	"encoding/json"
@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/kr/pretty"
-	"github.com/mig2/icloud/engine"
+	"github.com/tgreiser/icloud/engine"
 
 	"code.google.com/p/go-uuid/uuid"
 )

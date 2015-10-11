@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/mig2/icloud/engine"
+	"github.com/tgreiser/icloud/engine"
 )
 
 type ICloudContactsResponse struct {

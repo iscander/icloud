@@ -4,9 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net/http"
 
-	"github.com/mig2/icloud/contacts"
-	"github.com/mig2/icloud/engine"
+	"github.com/tgreiser/icloud/contacts"
+	"github.com/tgreiser/icloud/engine"
 )
 
 var (
@@ -31,6 +32,7 @@ func main() {
 	}
 	eng, e := NewEngine(*appleId, *password)
 	if e == nil {
+		fmt.Printf("Got engine: %v version: %v", eng, eng.Version)
 		cr, _ := contacts.Get(eng)
 		fmt.Printf("Got contacts: %v\n", cr.Contacts)
 	} else {
