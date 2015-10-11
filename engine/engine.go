@@ -3,11 +3,16 @@ package engine
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/http/cookiejar"
 	"net/url"
+)
+
+var (
+	ErrFailedLogin = errors.New("failed to sign in")
 )
 
 // Types global to ICloud
@@ -148,6 +153,9 @@ func NewEngine(client *http.Client, apple_id, password string) (engine *ICloudEn
 	}
 
 	defer resp.Body.Close()
+	if resp.StatusCode == 421 {
+		return nil, ErrFailedLogin
+	}
 
 	var body []byte
 	if body, e = ioutil.ReadAll(resp.Body); e != nil {
