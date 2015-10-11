@@ -106,16 +106,13 @@ func getICloudVersion(client *http.Client) (*ICloudVersion, error) {
 
 // Functions exported on the ICloudEngine type....
 
-func NewEngine(apple_id, password string) (engine *ICloudEngine, e error) {
+func NewEngine(client *http.Client, apple_id, password string) (engine *ICloudEngine, e error) {
 
 	cookieJar, err := cookiejar.New(nil)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	client := &http.Client{
-		Jar: cookieJar,
-	}
+	client.Jar = cookieJar
 
 	var version *ICloudVersion
 	if version, e = getICloudVersion(client); e != nil {

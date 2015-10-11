@@ -15,7 +15,7 @@ var (
 )
 
 func NewEngine(apple_id, password string) (*engine.ICloudEngine, error) {
-	return engine.NewEngine(apple_id, password)
+	return engine.NewEngine(&http.Client{}, apple_id, password)
 }
 
 /*
